@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var speed = 1000
+@export var speed = 400
 @export var acceleration = 10
 var current_speed = 100
 
@@ -17,7 +17,7 @@ func _process(delta):
 	if velocity.length() > 0:
 		current_speed = min(current_speed + acceleration * delta, speed)
 	else:
-		current_speed = max(current_speed - acceleration * delta, 0)
+		current_speed = max(current_speed - acceleration * delta, 100)
 	velocity = velocity.normalized() * current_speed
 	position += velocity * delta
 	
