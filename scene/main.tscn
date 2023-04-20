@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://ccpl0ykjhrxw7"]
+
+[ext_resource type="PackedScene" uid="uid://3krybtecavk6" path="res://scene/Tilemap.tscn" id="1_mkt2a"]
+[ext_resource type="PackedScene" uid="uid://bxqxwbcf2udxc" path="res://scene/player.tscn" id="2_qeys3"]
+[ext_resource type="PackedScene" uid="uid://bdiv4fyufws7x" path="res://scene/enemy.tscn" id="3_ji4c3"]
+
+[node name="Main" type="Node2D"]
+
+[node name="TileMap" parent="." instance=ExtResource("1_mkt2a")]
+position = Vector2(123, 77)
+
+[node name="Player" parent="." instance=ExtResource("2_qeys3")]
+position = Vector2(177, 149)
+
+[node name="Enemy" parent="." instance=ExtResource("3_ji4c3")]
+position = Vector2(222, 145)
