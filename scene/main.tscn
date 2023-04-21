@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://ccpl0ykjhrxw7"]
+[gd_scene load_steps=5 format=3 uid="uid://ccpl0ykjhrxw7"]
 
 [ext_resource type="PackedScene" uid="uid://3krybtecavk6" path="res://scene/Tilemap.tscn" id="1_mkt2a"]
 [ext_resource type="PackedScene" uid="uid://bxqxwbcf2udxc" path="res://scene/player.tscn" id="2_qeys3"]
 [ext_resource type="PackedScene" uid="uid://bdiv4fyufws7x" path="res://scene/enemy.tscn" id="3_ji4c3"]
+[ext_resource type="AudioStream" uid="uid://dsu3k664bxiwu" path="res://Assets/music/fast-2021-08-16_-_8_Bit_Adventure_-_www.FesliyanStudios.com.mp3" id="4_sqckh"]
 
 [node name="Main" type="Node2D"]
 
@@ -10,25 +11,11 @@
 position = Vector2(123, 77)
 
 [node name="Player" parent="." instance=ExtResource("2_qeys3")]
-position = Vector2(177, 149)
-
-[node name="Enemy" parent="." instance=ExtResource("3_ji4c3")]
-position = Vector2(222, 145)
-
-[node name="Enemy2" parent="." instance=ExtResource("3_ji4c3")]
-position = Vector2(135, 188)
-
-[node name="Enemy3" parent="." instance=ExtResource("3_ji4c3")]
-position = Vector2(262, 186)
-
-[node name="Enemy4" parent="." instance=ExtResource("3_ji4c3")]
-position = Vector2(95, 102)
+position = Vector2(219, 170)
 
 [node name="Enemy5" parent="." instance=ExtResource("3_ji4c3")]
 position = Vector2(173, 106)
 
-[node name="Enemy6" parent="." instance=ExtResource("3_ji4c3")]
-position = Vector2(65, 181)
-
-[node name="Enemy7" parent="." instance=ExtResource("3_ji4c3")]
-position = Vector2(322, 87)
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_sqckh")
+autoplay = true

@@ -1,7 +1,11 @@
 extends CharacterBody2D
 
+@export var damage = 300
+@export var health = 100
 @export var speed = 100
 var randomNum 
+
+@onready var attack_timer = $AttackTimer
 
 var target
 enum {surround, attack, hit}
@@ -20,6 +24,11 @@ func _physics_process(delta):
 	match state:
 		surround:
 			move(get_circle_position(randomNum), delta,)
+		attack:
+			move(player.global_position, delta)
+		hit:
+			move(player.global_position, delta)
+			print("hit")
 
 func move(target, delta):
 	var direction = (target - global_position).normalized()
@@ -36,3 +45,6 @@ func get_circle_position(random):
 	var y = kill_circle_centre.y + sin(angle) * radius 
 	
 	return Vector2(x, y)
+
+func _on_attack_timer_timeout():
+	state = attack
