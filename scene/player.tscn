@@ -3,6 +3,10 @@
 [ext_resource type="Script" path="res://Player.gd" id="1_1hmqy"]
 [ext_resource type="Texture2D" uid="uid://dlmimk0l6n6qv" path="res://Assets/AnimationSheet_Character.png" id="2_21eca"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aitrk"]
+radius = 7.5
+height = 28.0
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_21amc"]
 atlas = ExtResource("2_21eca")
 region = Rect2(0, 256, 32, 32)
@@ -134,7 +138,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_17an1")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack",
 "speed": 10.0
 }, {
@@ -208,31 +212,26 @@ animations = [{
 "speed": 12.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hf3ac"]
-size = Vector2(13, 28)
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_7x7qw"]
 radius = 35.0571
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_sjpi4"]
-radius = 9.05539
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kmhgq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_abxg2"]
-size = Vector2(13, 30.5)
+size = Vector2(28, 30)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_1hmqy")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 2)
+shape = SubResource("CapsuleShape2D_aitrk")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_gdct4")
 animation = &"attack"
-frame_progress = 0.0898176
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 2)
-shape = SubResource("RectangleShape2D_hf3ac")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+frame = 7
+frame_progress = 1.0
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(0, 3)
@@ -243,16 +242,19 @@ shape = SubResource("CircleShape2D_7x7qw")
 [node name="Area2D2" type="Area2D" parent="."]
 
 [node name="attack" type="CollisionShape2D" parent="Area2D2"]
-position = Vector2(0, 3)
-shape = SubResource("CircleShape2D_sjpi4")
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_kmhgq")
 
-[node name="sword" type="Area2D" parent="."]
+[node name="sword" type="Area2D" parent="." groups=["Sword"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="sword"]
-position = Vector2(9.5, 1.25)
+position = Vector2(6, 0)
 shape = SubResource("RectangleShape2D_abxg2")
 disabled = true
 
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="body_entered" from="Area2D2" to="." method="_on_area_2d_2_body_entered"]
+[connection signal="body_exited" from="Area2D2" to="." method="_on_area_2d_2_body_exited"]
+[connection signal="body_entered" from="sword" to="." method="_on_sword_body_entered"]

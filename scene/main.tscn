@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://3krybtecavk6" path="res://scene/Tilemap.tscn" id="1_mkt2a"]
 [ext_resource type="PackedScene" uid="uid://bxqxwbcf2udxc" path="res://scene/player.tscn" id="2_qeys3"]
 [ext_resource type="PackedScene" uid="uid://bdiv4fyufws7x" path="res://scene/enemy.tscn" id="3_ji4c3"]
-[ext_resource type="AudioStream" uid="uid://dsu3k664bxiwu" path="res://Assets/music/fast-2021-08-16_-_8_Bit_Adventure_-_www.FesliyanStudios.com.mp3" id="4_sqckh"]
+[ext_resource type="AudioStream" uid="uid://cukrneuxfxeue" path="res://Assets/music/Taverns Music.mp3" id="4_57er8"]
 
 [node name="Main" type="Node2D"]
 
@@ -13,9 +13,18 @@ position = Vector2(123, 77)
 [node name="Player" parent="." instance=ExtResource("2_qeys3")]
 position = Vector2(219, 170)
 
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
+remote_path = NodePath("../../Camera2D")
+
 [node name="Enemy5" parent="." instance=ExtResource("3_ji4c3")]
 position = Vector2(173, 106)
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_sqckh")
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(219, 170)
+zoom = Vector2(2.5, 2.5)
+position_smoothing_enabled = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_57er8")
+volume_db = -6.0
 autoplay = true

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cavi0w8tdubn3"
+path="res://.godot/imported/Red Dungeon.mp3-f15dc2a135e98517a3568499ba0d478b.mp3str"
+
+[deps]
+
+source_file="res://Assets/music/Red Dungeon.mp3"
+dest_files=["res://.godot/imported/Red Dungeon.mp3-f15dc2a135e98517a3568499ba0d478b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
