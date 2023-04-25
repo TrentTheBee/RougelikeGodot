@@ -3,10 +3,8 @@ extends CharacterBody2D
 var dead = false
 @export var damage = 300 #the damage dealt by the enemy
 @export var health = 100 #the enemys health
-@export var speed = 100 #the enemys speed (note unlike player enemys stay at the same speed)
+@export var speed = 50 #the enemys speed (note unlike player enemys stay at the same speed)
 var randomNum #random number see below for random number genrator
- 
-
 
 @onready var attack_timer = $AttackTimer #this is the attack timer node outside the script
 
@@ -25,16 +23,23 @@ var player = get_node("/root/Main/Player") #finding player node in root main
 
 func _physics_process(delta):
 	if dead:
+		$AnimatedSprite2D.play("death")
+		$CollisionShape2D.disabled = true
+		$Body/CollisionShape2D.disabled = true
 		return
 	match state:
 		surround: #make an invisible circle around the player and wait before attacking
 			move(get_circle_position(randomNum), delta,)
+			$AnimatedSprite2D.play("run")
 		attack: #move closer into attack
 			move(player.global_position, delta)
+			$AnimatedSprite2D.play("run")
 		hit: #move straight into player, and print hit in the debug console
 			move(player.global_position, delta)
+			$AnimatedSprite2D.play("run")
+			await get_tree().create_timer(0.01).timeout
 			print("hit")
-			
+
 func move(target, delta): #the basics, direction to get the direction its moving, and steering to create more realistic turns.
 		var direction = (target - global_position).normalized()
 		var desired_velocity = direction * speed
@@ -55,5 +60,7 @@ func _on_attack_timer_timeout(): #when the attack timer ends then attack the pla
 	state = attack
 
 func _on_animated_sprite_2d_animation_finished():
-	if $AnimatedSprite2D.animation == "attack":
+	if $AnimatedSprite2D.animation == "death":
+		$AnimatedSprite2D.stop()
 		queue_free()
+		

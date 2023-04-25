@@ -14,17 +14,42 @@ position = Vector2(123, 77)
 position = Vector2(219, 170)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
+position = Vector2(-40, 14)
 remote_path = NodePath("../../Camera2D")
 
 [node name="Enemy5" parent="." instance=ExtResource("3_ji4c3")]
 position = Vector2(173, 106)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(219, 170)
+position = Vector2(179, 184)
 zoom = Vector2(2.5, 2.5)
 position_smoothing_enabled = true
+rotation_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_57er8")
 volume_db = -6.0
 autoplay = true
+
+[node name="Enemy" parent="." instance=ExtResource("3_ji4c3")]
+position = Vector2(315, 188)
+
+[node name="Enemy2" parent="." instance=ExtResource("3_ji4c3")]
+position = Vector2(29, 168)
+
+[node name="Enemy3" parent="." instance=ExtResource("3_ji4c3")]
+position = Vector2(52, 268)
+
+[node name="Enemy4" parent="." instance=ExtResource("3_ji4c3")]
+position = Vector2(130, 433)
+
+[node name="Enemy6" parent="." instance=ExtResource("3_ji4c3")]
+position = Vector2(299, 373)
+
+[node name="Enemy7" parent="." instance=ExtResource("3_ji4c3")]
+position = Vector2(558, 188)
+
+[node name="Enemy8" parent="." instance=ExtResource("3_ji4c3")]
+position = Vector2(580, 81)

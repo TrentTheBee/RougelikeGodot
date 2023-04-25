@@ -1,6 +1,8 @@
-extends Node2D
+extends CharacterBody2D
+
 
 var isAttacking = false #is attacking checks if player is attacking so that other animations dont collide
+var knockback_velocity = Vector2.ZERO
 @export var health = 1000 #basic health variable
 @export var speed = 200 #this is kinda the max speed the player can get too
 @export var acceleration = 10 #how fast the player speeds up
@@ -11,10 +13,24 @@ var sword = $sword # get a reference to the Area2D node sword
 
 func _on_sword_body_entered(body):
 	if body.is_in_group("Enemy"): # check if the body that entered is an enemy
-		body.health -= 10 # reduce the enemy's health by 10
+		body.health -= 50 # reduce the enemy's health by 10
 		if body.health <= 0: # check if the enemy's health is 0 or less
 			body.dead = true # set the enemy's dead variable to true
+		else:
+			var knockback_direction = (body.global_transform.origin - global_transform.origin).normalized()
+			
+		var knockback_direction = (body.global_transform.origin - global_transform.origin).normalized()
+		
 
+		await get_tree().create_timer(0.2).timeout
+		
+		body.velocity += knockback_direction * 400
+			
+func _physics_process(delta):
+	if knockback_velocity.length() > 0:
+		move_and_slide()
+		knockback_velocity = knockback_velocity.linear_interpolate(Vector2.ZERO, 0.1)
+	move_and_collide(velocity)
 #movement script
 func _process(delta):
 	var velocity = Vector2.ZERO
@@ -46,6 +62,18 @@ func _process(delta):
 	velocity = velocity.normalized() * current_speed
 	position += velocity * delta
 	
+	#attack script
+	if Input.is_action_just_pressed("attack"):
+		$AnimatedSprite2D.play("attack")
+		$sword/CollisionShape2D.disabled = false
+		isAttacking = true
+		
+func _on_animated_sprite_2d_animation_finished():
+	if $AnimatedSprite2D.animation == "attack":
+		isAttacking = false
+		$sword/CollisionShape2D.disabled = true
+
+	
 	#enemy script
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("Enemy"):
@@ -59,11 +87,10 @@ func _on_area_2d_body_exited(body):
 func _on_area_2d_2_body_entered(body):
 	if body.is_in_group("Enemy"):
 		body.state = body.hit 
-		print("hit")
-		await get_tree().create_timer(0.001).timeout # waits for 1 second
-		body.state = body.surround 
 
 func _on_area_2d_2_body_exited(body):
 	if body.is_in_group("Enemy"):
 		body.state = body.surround
+
+
 
