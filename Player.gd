@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-
 var isAttacking = false #is attacking checks if player is attacking so that other animations dont collide
 var knockback_velocity = Vector2.ZERO
 @export var health = 1000 #basic health variable
@@ -18,10 +17,8 @@ func _on_sword_body_entered(body):
 			body.dead = true # set the enemy's dead variable to true
 		else:
 			var knockback_direction = (body.global_transform.origin - global_transform.origin).normalized()
-			
 		var knockback_direction = (body.global_transform.origin - global_transform.origin).normalized()
 		
-
 		await get_tree().create_timer(0.2).timeout
 		
 		body.velocity += knockback_direction * 400
@@ -51,6 +48,9 @@ func _process(delta):
 	if Input.is_action_pressed("up") and isAttacking == false: #move up and play run animation
 		velocity.y -= 1
 		$AnimatedSprite2D.play("run")
+		
+		if $AnimatedSprite2D.flip_h == true:
+			pass
 		
 	#makes it so as the player moves more the player moves faster
 	if velocity.length() > 0:
@@ -87,6 +87,8 @@ func _on_area_2d_body_exited(body):
 func _on_area_2d_2_body_entered(body):
 	if body.is_in_group("Enemy"):
 		body.state = body.hit 
+		await get_tree().create_timer(0.01).timeout
+		body.state = body.surround
 
 func _on_area_2d_2_body_exited(body):
 	if body.is_in_group("Enemy"):

@@ -1,9 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://ccpl0ykjhrxw7"]
+[gd_scene load_steps=7 format=3 uid="uid://ccpl0ykjhrxw7"]
 
 [ext_resource type="PackedScene" uid="uid://3krybtecavk6" path="res://scene/Tilemap.tscn" id="1_mkt2a"]
 [ext_resource type="PackedScene" uid="uid://bxqxwbcf2udxc" path="res://scene/player.tscn" id="2_qeys3"]
 [ext_resource type="PackedScene" uid="uid://bdiv4fyufws7x" path="res://scene/enemy.tscn" id="3_ji4c3"]
 [ext_resource type="AudioStream" uid="uid://cukrneuxfxeue" path="res://Assets/music/Taverns Music.mp3" id="4_57er8"]
+[ext_resource type="PackedScene" uid="uid://cn44emt5evggq" path="res://scene/enemy_2.tscn" id="5_dc1ku"]
+
+[sub_resource type="Environment" id="Environment_ktpyd"]
+background_mode = 3
+tonemap_mode = 3
 
 [node name="Main" type="Node2D"]
 
@@ -48,8 +53,8 @@ position = Vector2(130, 433)
 [node name="Enemy6" parent="." instance=ExtResource("3_ji4c3")]
 position = Vector2(299, 373)
 
-[node name="Enemy7" parent="." instance=ExtResource("3_ji4c3")]
-position = Vector2(558, 188)
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ktpyd")
 
-[node name="Enemy8" parent="." instance=ExtResource("3_ji4c3")]
-position = Vector2(580, 81)
+[node name="Enemy7" parent="." instance=ExtResource("5_dc1ku")]
+position = Vector2(188, 305)

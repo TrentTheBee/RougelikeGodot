@@ -3,7 +3,7 @@ extends CharacterBody2D
 var dead = false
 @export var damage = 300 #the damage dealt by the enemy
 @export var health = 100 #the enemys health
-@export var speed = 50 #the enemys speed (note unlike player enemys stay at the same speed)
+@export var speed = 150 #the enemys speed (note unlike player enemys stay at the same speed)
 var randomNum #random number see below for random number genrator
 
 @onready var attack_timer = $AttackTimer #this is the attack timer node outside the script
@@ -53,7 +53,7 @@ func move(target, delta): #the basics, direction to get the direction its moving
 
 func get_circle_position(random): #circle stuff 
 	var kill_circle_centre = player.global_position
-	var radius = 40
+	var radius = 20
 	var angle = random * PI * 2
 	var x = kill_circle_centre.x + cos(angle) * radius 
 	var y = kill_circle_centre.y + sin(angle) * radius 

@@ -213,14 +213,13 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7x7qw"]
-radius = 38.0132
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kmhgq"]
-radius = 19.0
-height = 38.0
+radius = 33.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_abxg2"]
 size = Vector2(26, 36)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kmhgq"]
+radius = 15.0
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_1hmqy")
@@ -244,14 +243,6 @@ collision_mask = 2
 position = Vector2(0, -2)
 shape = SubResource("CircleShape2D_7x7qw")
 
-[node name="Area2D2" type="Area2D" parent="."]
-collision_layer = 2
-collision_mask = 2
-
-[node name="attack" type="CollisionShape2D" parent="Area2D2"]
-position = Vector2(0, 2)
-shape = SubResource("CapsuleShape2D_kmhgq")
-
 [node name="sword" type="Area2D" parent="." groups=["Sword"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="sword"]
@@ -259,9 +250,15 @@ position = Vector2(5, 1)
 shape = SubResource("RectangleShape2D_abxg2")
 disabled = true
 
+[node name="Area2D2" type="Area2D" parent="."]
+
+[node name="attack" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_kmhgq")
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="sword" to="." method="_on_sword_body_entered"]
 [connection signal="body_entered" from="Area2D2" to="." method="_on_area_2d_2_body_entered"]
 [connection signal="body_exited" from="Area2D2" to="." method="_on_area_2d_2_body_exited"]
-[connection signal="body_entered" from="sword" to="." method="_on_sword_body_entered"]
