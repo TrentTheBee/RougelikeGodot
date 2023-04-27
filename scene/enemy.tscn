@@ -148,6 +148,7 @@ animation = &"run"
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 emitting = false
 lifetime = 1.5
+one_shot = true
 explosiveness = 1.0
 randomness = 1.0
 lifetime_randomness = 1.0
@@ -160,8 +161,8 @@ angular_velocity_min = 43.64
 angular_velocity_max = 305.45
 damping_min = 100.0
 damping_max = 100.0
-scale_amount_min = 20.0
-scale_amount_max = 20.0
+scale_amount_max = 5.0
+color = Color(0.92549, 0.796078, 0.67451, 1)
 anim_speed_max = 24.57
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

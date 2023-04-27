@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://cb3ym28wvcig1"]
+
+[ext_resource type="Texture2D" uid="uid://cghb24vx64xrm" path="res://Assets/Pixel Crawler - FREE - 1.8/Arcane_Effect/01/Arcane_Effect_7.png" id="1_10gh8"]
+[ext_resource type="Script" path="res://Hitbox.gd" id="2_vc1r2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d2h8j"]
+radius = 22.8035
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kkhq4"]
+radius = 23.0
+
+[node name="fireball" type="Node2D"]
+
+[node name="ArcaneEffect7" type="Sprite2D" parent="."]
+position = Vector2(-1, 270)
+rotation = -1.56847
+texture = ExtResource("1_10gh8")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_mask = 0
+monitoring = false
+script = ExtResource("2_vc1r2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(1, 276)
+rotation = 0.343128
+shape = SubResource("CircleShape2D_d2h8j")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, 276)
+shape = SubResource("CircleShape2D_kkhq4")

@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+@onready var cpu_particles_2d = $CPUParticles2D
 var dead = false
 @export var damage = 300 #the damage dealt by the enemy
 @export var health = 100 #the enemys health

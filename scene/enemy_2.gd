@@ -6,6 +6,8 @@ var dead = false
 @export var speed = 150 #the enemys speed (note unlike player enemys stay at the same speed)
 var randomNum #random number see below for random number genrator
 
+@onready var cpu_particles_2d = $CPUParticles2D
+
 @onready var attack_timer = $AttackTimer #this is the attack timer node outside the script
 
 var target #see below for more target variable

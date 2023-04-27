@@ -12,8 +12,10 @@ var sword = $sword # get a reference to the Area2D node sword
 
 func _on_sword_body_entered(body):
 	if body.is_in_group("Enemy"): # check if the body that entered is an enemy
-		body.health -= 50 # reduce the enemy's health by 10
+		body.health -= 50# reduce the enemy's health by 50
+		body.cpu_particles_2d.emitting = true 
 		if body.health <= 0: # check if the enemy's health is 0 or less
+			body.cpu_particles_2d.emitting = true
 			body.dead = true # set the enemy's dead variable to true
 		else:
 			var knockback_direction = (body.global_transform.origin - global_transform.origin).normalized()
@@ -35,11 +37,14 @@ func _process(delta):
 		velocity.x += 1
 		$AnimatedSprite2D.play("run")
 		$AnimatedSprite2D.flip_h = false
+		$sword/CollisionShape2D.position.x = abs($sword/CollisionShape2D.position.x)
+		
 		
 	if Input.is_action_pressed("left") and isAttacking == false: #move left play run animation and look toward the left
 		velocity.x -= 1
 		$AnimatedSprite2D.play("run")
 		$AnimatedSprite2D.flip_h = true
+		$sword/CollisionShape2D.position.x = -abs($sword/CollisionShape2D.position.x)
 		
 	if Input.is_action_pressed("down") and isAttacking == false: #move down and play run animation
 		velocity.y += 1
@@ -48,10 +53,7 @@ func _process(delta):
 	if Input.is_action_pressed("up") and isAttacking == false: #move up and play run animation
 		velocity.y -= 1
 		$AnimatedSprite2D.play("run")
-		
-		if $AnimatedSprite2D.flip_h == true:
-			pass
-		
+
 	#makes it so as the player moves more the player moves faster
 	if velocity.length() > 0:
 		current_speed = min(current_speed + acceleration * delta, speed)

@@ -116,7 +116,7 @@ wait_time = 2.0
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." groups=["Enemy"]]
 sprite_frames = SubResource("SpriteFrames_1gd32")
 animation = &"run"
-frame_progress = 0.133803
+frame_progress = 0.575897
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 17)
@@ -127,6 +127,24 @@ shape = SubResource("CapsuleShape2D_k3b44")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
 position = Vector2(0, 17)
 shape = SubResource("CapsuleShape2D_1swb6")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(0, 17)
+emitting = false
+lifetime = 1.5
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+lifetime_randomness = 1.0
+direction = Vector2(1, 1)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 43.68
+initial_velocity_max = 305.45
+angular_velocity_min = 45.0
+angular_velocity_max = 45.0
+scale_amount_max = 5.0
+color = Color(0.647059, 0.235294, 0.172549, 1)
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
