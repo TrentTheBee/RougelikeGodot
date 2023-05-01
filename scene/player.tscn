@@ -222,7 +222,7 @@ size = Vector2(26, 36)
 radius = 8.0
 height = 28.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_1hmqy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

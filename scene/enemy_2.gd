@@ -41,6 +41,8 @@ func _physics_process(delta):
 			move(player.global_position, delta)
 			$AnimatedSprite2D.play("run")
 			print("hit")
+			
+			
 	if velocity.x < 0:
 		$AnimatedSprite2D.flip_h = true
 	else:

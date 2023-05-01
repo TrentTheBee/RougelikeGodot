@@ -1,8 +1,9 @@
 extends CharacterBody2D
 
+var dead = false
 var isAttacking = false #is attacking checks if player is attacking so that other animations dont collide
 var knockback_velocity = Vector2.ZERO
-@export var health = 1000 #basic health variable
+@export var health = 100 #basic health variable
 @export var speed = 200 #this is kinda the max speed the player can get too
 @export var acceleration = 10 #how fast the player speeds up
 var current_speed = 100 #this is the speed the player starts with
@@ -11,7 +12,7 @@ var current_speed = 100 #this is the speed the player starts with
 var sword = $sword # get a reference to the Area2D node sword
 
 func _on_sword_body_entered(body):
-	if body.is_in_group("Enemy"): # check if the body that entered is an enemy
+	if body.is_in_group("Enemy") and dead == false: # check if the body that entered is an enemy
 		body.health -= 50# reduce the enemy's health by 50
 		body.cpu_particles_2d.emitting = true 
 		if body.health <= 0: # check if the enemy's health is 0 or less
@@ -26,36 +27,37 @@ func _on_sword_body_entered(body):
 		body.velocity += knockback_direction * 400
 			
 func _physics_process(delta):
-	if knockback_velocity.length() > 0:
+	if knockback_velocity.length() > 0 and dead == false:
 		move_and_slide()
 		knockback_velocity = knockback_velocity.linear_interpolate(Vector2.ZERO, 0.1)
 	move_and_collide(velocity)
+
 #movement script
 func _process(delta):
 	var velocity = Vector2.ZERO
-	if Input.is_action_pressed("right") and isAttacking == false: #move right play run animation and look toward the right
+	if Input.is_action_pressed("right") and isAttacking == false and dead == false: #move right play run animation and look toward the right
 		velocity.x += 1
 		$AnimatedSprite2D.play("run")
 		$AnimatedSprite2D.flip_h = false
 		$sword/CollisionShape2D.position.x = abs($sword/CollisionShape2D.position.x)
 		
 		
-	if Input.is_action_pressed("left") and isAttacking == false: #move left play run animation and look toward the left
+	if Input.is_action_pressed("left") and isAttacking == false and dead == false: #move left play run animation and look toward the left
 		velocity.x -= 1
 		$AnimatedSprite2D.play("run")
 		$AnimatedSprite2D.flip_h = true
 		$sword/CollisionShape2D.position.x = -abs($sword/CollisionShape2D.position.x)
 		
-	if Input.is_action_pressed("down") and isAttacking == false: #move down and play run animation
+	if Input.is_action_pressed("down") and isAttacking == false and dead == false: #move down and play run animation
 		velocity.y += 1
 		$AnimatedSprite2D.play("run")
 		
-	if Input.is_action_pressed("up") and isAttacking == false: #move up and play run animation
+	if Input.is_action_pressed("up") and isAttacking == false and dead == false: #move up and play run animation
 		velocity.y -= 1
 		$AnimatedSprite2D.play("run")
 
 	#makes it so as the player moves more the player moves faster
-	if velocity.length() > 0:
+	if velocity.length() > 0 and dead == false:
 		current_speed = min(current_speed + acceleration * delta, speed)
 	elif isAttacking == false:
 		$AnimatedSprite2D.play("idle")
@@ -65,7 +67,7 @@ func _process(delta):
 	position += velocity * delta
 	
 	#attack script
-	if Input.is_action_just_pressed("attack"):
+	if Input.is_action_just_pressed("attack") and dead == false:
 		$AnimatedSprite2D.play("attack")
 		$sword/CollisionShape2D.disabled = false
 		isAttacking = true
@@ -78,22 +80,22 @@ func _on_animated_sprite_2d_animation_finished():
 	
 	#enemy script
 func _on_area_2d_body_entered(body):
-	if body.is_in_group("Enemy"):
+	if body.is_in_group("Enemy") and dead == false:
 		body.attack_timer.start()
 
 func _on_area_2d_body_exited(body):
-	if body.is_in_group("Enemy"):
+	if body.is_in_group("Enemy")and dead == false:
 		body.attack_timer.stop()
 		body.state = body.surround
 
 func _on_area_2d_2_body_entered(body):
-	if body.is_in_group("Enemy"):
+	if body.is_in_group("Enemy")and dead == false:
 		body.state = body.hit 
 		await get_tree().create_timer(0.01).timeout
 		body.state = body.surround
 
 func _on_area_2d_2_body_exited(body):
-	if body.is_in_group("Enemy"):
+	if body.is_in_group("Enemy")and dead == false:
 		body.state = body.surround
 
 

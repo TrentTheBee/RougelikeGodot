@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dcxk3pu0cftqh"]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

@@ -166,4 +166,5 @@ color = Color(0.92549, 0.796078, 0.67451, 1)
 anim_speed_max = 24.57
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="body_entered" from="Body" to="." method="_on_body_body_entered"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
