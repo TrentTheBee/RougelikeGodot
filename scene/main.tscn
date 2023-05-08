@@ -16,7 +16,7 @@ tonemap_mode = 3
 position = Vector2(123, 77)
 
 [node name="Player" parent="." instance=ExtResource("2_qeys3")]
-position = Vector2(219, 170)
+position = Vector2(264, 382)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 position = Vector2(-40, 14)
@@ -26,7 +26,7 @@ remote_path = NodePath("../../Camera2D")
 position = Vector2(173, 106)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(179, 184)
+position = Vector2(224, 396)
 zoom = Vector2(2.5, 2.5)
 position_smoothing_enabled = true
 rotation_smoothing_enabled = true
@@ -39,22 +39,22 @@ volume_db = -6.0
 autoplay = true
 
 [node name="Enemy" parent="." instance=ExtResource("3_ji4c3")]
-position = Vector2(315, 188)
+position = Vector2(400, 276)
 
 [node name="Enemy2" parent="." instance=ExtResource("3_ji4c3")]
-position = Vector2(29, 168)
+position = Vector2(134, 161)
 
 [node name="Enemy3" parent="." instance=ExtResource("3_ji4c3")]
-position = Vector2(52, 268)
+position = Vector2(331, 294)
 
 [node name="Enemy4" parent="." instance=ExtResource("3_ji4c3")]
-position = Vector2(130, 433)
+position = Vector2(174, 223)
 
 [node name="Enemy6" parent="." instance=ExtResource("3_ji4c3")]
-position = Vector2(299, 373)
+position = Vector2(220, 205)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ktpyd")
 
 [node name="Enemy7" parent="." instance=ExtResource("5_dc1ku")]
-position = Vector2(188, 305)
+position = Vector2(142, 262)
