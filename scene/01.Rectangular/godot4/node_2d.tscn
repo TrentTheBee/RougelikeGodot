@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b04iqe8tleitn"]
+
+[ext_resource type="PackedScene" uid="uid://d1c8kw70jw5gj" path="res://RandomWalker/RandomWalker.tscn" id="1_ukfjg"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="RandomWalker" parent="." instance=ExtResource("1_ukfjg")]

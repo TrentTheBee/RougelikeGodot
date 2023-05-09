@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://1ud6au0m2s6r"]
+
+[ext_resource type="PackedScene" uid="uid://djar46m4afhmk" path="res://BasicDungeon/02.AndOrganic/AndOrganic.tscn" id="1_w4kjc"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="BasicDungeonAndOrganic" parent="." instance=ExtResource("1_w4kjc")]
