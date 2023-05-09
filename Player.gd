@@ -26,11 +26,6 @@ func _on_sword_body_entered(body):
 		
 		body.velocity += knockback_direction * 400
 			
-func _physics_process(delta):
-	if knockback_velocity.length() > 0 and dead == false:
-		move_and_slide()
-		knockback_velocity = knockback_velocity.linear_interpolate(Vector2.ZERO, 0.1)
-	move_and_collide(velocity)
 
 #movement script
 func _process(delta):
@@ -98,5 +93,13 @@ func _on_area_2d_2_body_exited(body):
 	if body.is_in_group("Enemy")and dead == false:
 		body.state = body.surround
 
+func _physics_process(delta):
+	if knockback_velocity.length() > 0 and dead == false:
+		move_and_slide()
+		knockback_velocity = knockback_velocity.linear_interpolate(Vector2.ZERO, 0.1)
+	move_and_collide(velocity)
+	if Input.is_action_just_pressed("projectile"):
+		fire()
 
-
+func fire():
+	pass 
