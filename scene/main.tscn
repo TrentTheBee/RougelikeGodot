@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bxqxwbcf2udxc" path="res://scene/player.tscn" id="2_qeys3"]
 [ext_resource type="PackedScene" uid="uid://bdiv4fyufws7x" path="res://scene/enemy.tscn" id="3_ji4c3"]
 [ext_resource type="AudioStream" uid="uid://cukrneuxfxeue" path="res://Assets/music/Taverns Music.mp3" id="4_57er8"]
-[ext_resource type="PackedScene" path="res://scene/enemy_2.tscn" id="5_dc1ku"]
+[ext_resource type="PackedScene" uid="uid://cn44emt5evggq" path="res://scene/enemy_2.tscn" id="5_dc1ku"]
 [ext_resource type="PackedScene" uid="uid://3krybtecavk6" path="res://scene/Tilemap.tscn" id="5_pxvw3"]
 
 [sub_resource type="Environment" id="Environment_ktpyd"]
