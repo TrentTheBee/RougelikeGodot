@@ -1,7 +1,8 @@
-extends CharacterBody2D
+extends CharacterBody2D #class definition 
 
-var dead = false
-var isAttacking = false #is attacking checks if player is attacking so that other animations dont collide
+#variables-------------------------------------------------------------------------------------------------
+var dead = false #this checks if the player has died, currently the variable does not work, I will work with it later
+var isAttacking = false #is attacking checks if player is attacking so that other animations dont collide, this variable determines the entierty of the player script dont touch
 var knockback_velocity = Vector2.ZERO
 @export var health = 100 #basic health variable
 @export var speed = 200 #this is kinda the max speed the player can get too
@@ -11,6 +12,7 @@ var current_speed = 100 #this is the speed the player starts with
 @onready 
 var sword = $sword # get a reference to the Area2D node sword
 
+#melee attack script ---------------------------------------------------------------------------------
 func _on_sword_body_entered(body):
 	if body.is_in_group("Enemy") and dead == false: # check if the body that entered is an enemy
 		body.health -= 50# reduce the enemy's health by 50
@@ -18,30 +20,35 @@ func _on_sword_body_entered(body):
 		if body.health <= 0: # check if the enemy's health is 0 or less
 			body.cpu_particles_2d.emitting = true
 			body.dead = true # set the enemy's dead variable to true
+		#make enemy knockback when hit
 		else:
-			var knockback_direction = (body.global_transform.origin - global_transform.origin).normalized()
+			var knockback_direction = (body.global_transform.origin - global_transform.origin).normalized() #normalized so enemy knockback is realistic
 		var knockback_direction = (body.global_transform.origin - global_transform.origin).normalized()
 		
 		await get_tree().create_timer(0.2).timeout
 		
-		body.velocity += knockback_direction * 400
-			
-
-#movement script
+		body.velocity += knockback_direction * 400 #knockback value currently 400, change this value however
+	
+	if Input.is_action_just_pressed("attack") and dead == false:
+		$AnimatedSprite2D.play("attack")
+		$sword/CollisionShape2D.disabled = false
+		isAttacking = true
+		
+#movement script -------------------------------------------------------------------------------------------------------------------------------
 func _process(delta):
 	var velocity = Vector2.ZERO
 	if Input.is_action_pressed("right") and isAttacking == false and dead == false: #move right play run animation and look toward the right
 		velocity.x += 1
 		$AnimatedSprite2D.play("run")
 		$AnimatedSprite2D.flip_h = false
-		$sword/CollisionShape2D.position.x = abs($sword/CollisionShape2D.position.x)
+		$sword/CollisionShape2D.position.x = abs($sword/CollisionShape2D.position.x) #when flip_h is true, flip sword hitbox
 		
 		
 	if Input.is_action_pressed("left") and isAttacking == false and dead == false: #move left play run animation and look toward the left
 		velocity.x -= 1
 		$AnimatedSprite2D.play("run")
 		$AnimatedSprite2D.flip_h = true
-		$sword/CollisionShape2D.position.x = -abs($sword/CollisionShape2D.position.x)
+		$sword/CollisionShape2D.position.x = -abs($sword/CollisionShape2D.position.x) #when flip_h is true, flip sword hitbox
 		
 	if Input.is_action_pressed("down") and isAttacking == false and dead == false: #move down and play run animation
 		velocity.y += 1
@@ -58,22 +65,15 @@ func _process(delta):
 		$AnimatedSprite2D.play("idle")
 		current_speed = max(current_speed - acceleration * delta, 100)
 	
-	velocity = velocity.normalized() * current_speed
-	position += velocity * delta
-	
-	#attack script
-	if Input.is_action_just_pressed("attack") and dead == false:
-		$AnimatedSprite2D.play("attack")
-		$sword/CollisionShape2D.disabled = false
-		isAttacking = true
-		
+	velocity = velocity.normalized() * current_speed #make it so diagonal movement is more realistic
+	position += velocity * delta #finds the position of the player determined by velocity every frame
+
 func _on_animated_sprite_2d_animation_finished():
 	if $AnimatedSprite2D.animation == "attack":
 		isAttacking = false
 		$sword/CollisionShape2D.disabled = true
 
-	
-	#enemy script
+#enemy script behavior script-------------------------------------------------------------------------------------------------------
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("Enemy") and dead == false:
 		body.attack_timer.start()
@@ -93,13 +93,17 @@ func _on_area_2d_2_body_exited(body):
 	if body.is_in_group("Enemy")and dead == false:
 		body.state = body.surround
 
+#knockback process-----------------------------------------------------------------------------------------------------
 func _physics_process(delta):
 	if knockback_velocity.length() > 0 and dead == false:
 		move_and_slide()
 		knockback_velocity = knockback_velocity.linear_interpolate(Vector2.ZERO, 0.1)
 	move_and_collide(velocity)
+
+#shooting processs ----------------------------------------------------------------------------------------------------
+func fire():
+	pass 
+	
 	if Input.is_action_just_pressed("projectile"):
 		fire()
 
-func fire():
-	pass 
