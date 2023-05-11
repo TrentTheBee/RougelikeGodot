@@ -11,14 +11,13 @@ config_version=5
 [application]
 
 config/name="The Rougelike"
-run/main_scene="res://scene/main.tscn"
+run/main_scene="res://scene/menu.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://icon.png"
 
 [display]
 
-window/size/viewport_width=1280
-window/size/viewport_height=720
+window/size/resizable=false
 
 [filesystem]
 

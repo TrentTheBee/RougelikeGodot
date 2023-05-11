@@ -216,7 +216,7 @@ animations = [{
 radius = 33.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_abxg2"]
-size = Vector2(26, 36)
+size = Vector2(22, 36)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kmhgq"]
 radius = 8.0
@@ -231,7 +231,9 @@ shape = SubResource("CapsuleShape2D_aitrk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_gdct4")
-animation = &"death"
+animation = &"attack"
+frame = 7
+frame_progress = 1.0
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(0, 3)
@@ -245,7 +247,7 @@ shape = SubResource("CircleShape2D_7x7qw")
 [node name="sword" type="Area2D" parent="." groups=["Sword"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="sword"]
-position = Vector2(5, 1)
+position = Vector2(7, 1)
 shape = SubResource("RectangleShape2D_abxg2")
 disabled = true
 one_way_collision_margin = 0.0
