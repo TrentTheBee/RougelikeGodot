@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+var death_animation_playing = false
 var dead = false
 var isAttacking = false #is attacking checks if player is attacking so that other animations dont collide
 var knockback_velocity = Vector2.ZERO
@@ -54,7 +55,7 @@ func _process(delta):
 	#makes it so as the player moves more the player moves faster
 	if velocity.length() > 0 and dead == false:
 		current_speed = min(current_speed + acceleration * delta, speed)
-	elif isAttacking == false:
+	elif isAttacking == false and dead == false:
 		$AnimatedSprite2D.play("idle")
 		current_speed = max(current_speed - acceleration * delta, 100)
 	
@@ -71,8 +72,7 @@ func _on_animated_sprite_2d_animation_finished():
 	if $AnimatedSprite2D.animation == "attack":
 		isAttacking = false
 		$sword/CollisionShape2D.disabled = true
-
-	
+		
 	#enemy script
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("Enemy") and dead == false:
@@ -86,6 +86,7 @@ func _on_area_2d_body_exited(body):
 func _on_area_2d_2_body_entered(body):
 	if body.is_in_group("Enemy")and dead == false:
 		body.state = body.hit 
+		health =- 100
 		await get_tree().create_timer(0.01).timeout
 		body.state = body.surround
 
@@ -98,6 +99,20 @@ func _physics_process(delta):
 		move_and_slide()
 		knockback_velocity = knockback_velocity.linear_interpolate(Vector2.ZERO, 0.1)
 	move_and_collide(velocity)
+	
+	if health <= 0 and not death_animation_playing: 
+		dead = true
+		print("dead")
+		$AnimatedSprite2D.play("death")
+		death_animation_playing = true
+		await get_tree().create_timer(0.8).timeout
+		$AnimatedSprite2D.stop()
+		$CollisionShape2D.disabled = true
+		$Area2D/attract.disabled = true
+		$Area2D2/attack.disabled = true
+
+
+		
 	if Input.is_action_just_pressed("projectile"):
 		fire()
 

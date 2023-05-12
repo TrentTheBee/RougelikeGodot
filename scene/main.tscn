@@ -1,14 +1,17 @@
-[gd_scene load_steps=8 format=3 uid="uid://ccpl0ykjhrxw7"]
+[gd_scene load_steps=7 format=3 uid="uid://ccpl0ykjhrxw7"]
 
 [ext_resource type="Script" path="res://scene/main.gd" id="1_ob0q2"]
 [ext_resource type="PackedScene" uid="uid://bxqxwbcf2udxc" path="res://scene/player.tscn" id="2_qeys3"]
 [ext_resource type="PackedScene" uid="uid://bdiv4fyufws7x" path="res://scene/enemy.tscn" id="3_ji4c3"]
 [ext_resource type="AudioStream" uid="uid://c2ylotbr78plg" path="res://Assets/music/Blue Dungeon.mp3" id="4_c0iro"]
-[ext_resource type="PackedScene" uid="uid://cn44emt5evggq" path="res://scene/enemy_2.tscn" id="5_dc1ku"]
 [ext_resource type="PackedScene" uid="uid://3krybtecavk6" path="res://scene/Tilemap.tscn" id="5_pxvw3"]
 
 [sub_resource type="Curve2D" id="Curve2D_p4rju"]
 bake_interval = 2.77
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -271, -115, 0, 0, 0, 0, 190, -116, 0, 0, 0, 0, 191, 143, 0, 0, 0, 0, -271, 143, 0, 0, 0, 0, -269, -114, 0, 0, 0, 0, -270, -116)
+}
+point_count = 6
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_ob0q2")
@@ -19,9 +22,6 @@ layer_1/tile_data = PackedInt32Array(5, 262145, 12, 65541, 262145, 13, 327680, 1
 
 [node name="Player" parent="." instance=ExtResource("2_qeys3")]
 position = Vector2(264, 382)
-health = 100
-speed = 200
-acceleration = 10
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 position = Vector2(-40, 14)
@@ -31,11 +31,10 @@ remote_path = NodePath("../../Camera2D")
 curve = SubResource("Curve2D_p4rju")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Player/Path2D"]
+position = Vector2(-271, -115)
+rotation = -0.00216919
 
 [node name="Marker2D" type="Marker2D" parent="Player/Path2D/PathFollow2D"]
-
-[node name="Enemy5" parent="." instance=ExtResource("3_ji4c3")]
-position = Vector2(35, 88)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(224, 396)
@@ -52,21 +51,6 @@ autoplay = true
 
 [node name="Enemy" parent="." instance=ExtResource("3_ji4c3")]
 position = Vector2(400, 276)
-
-[node name="Enemy2" parent="." instance=ExtResource("3_ji4c3")]
-position = Vector2(134, 161)
-
-[node name="Enemy3" parent="." instance=ExtResource("3_ji4c3")]
-position = Vector2(331, 294)
-
-[node name="Enemy4" parent="." instance=ExtResource("3_ji4c3")]
-position = Vector2(172, 225)
-
-[node name="Enemy6" parent="." instance=ExtResource("3_ji4c3")]
-position = Vector2(-78, 347)
-
-[node name="Enemy7" parent="." instance=ExtResource("5_dc1ku")]
-position = Vector2(91, 145)
 
 [node name="EnemySpawnTimer" type="Timer" parent="."]
 autostart = true

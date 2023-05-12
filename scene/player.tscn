@@ -167,9 +167,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_n8oup")
 }],
-"loop": true,
+"loop": false,
 "name": &"death",
-"speed": 6.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -231,7 +231,7 @@ shape = SubResource("CapsuleShape2D_aitrk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_gdct4")
-animation = &"attack"
+animation = &"death"
 frame = 7
 frame_progress = 1.0
 
