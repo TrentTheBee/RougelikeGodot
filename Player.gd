@@ -1,10 +1,13 @@
 extends CharacterBody2D
 
+@onready 
+var cpu_particles_2d = $CPUParticles2D
+
 var death_animation_playing = false
 var dead = false
 var isAttacking = false #is attacking checks if player is attacking so that other animations dont collide
 var knockback_velocity = Vector2.ZERO
-@export var health = 100 #basic health variable
+@export var health = 1000 #basic health variable
 @export var speed = 200 #this is kinda the max speed the player can get too
 @export var acceleration = 10 #how fast the player speeds up
 var current_speed = 100 #this is the speed the player starts with
@@ -83,10 +86,10 @@ func _on_area_2d_body_exited(body):
 		body.attack_timer.stop()
 		body.state = body.surround
 
+
 func _on_area_2d_2_body_entered(body):
 	if body.is_in_group("Enemy")and dead == false:
-		body.state = body.hit 
-		health =- 100
+		body.state = body.hit
 		await get_tree().create_timer(0.01).timeout
 		body.state = body.surround
 
@@ -102,15 +105,14 @@ func _physics_process(delta):
 	
 	if health <= 0 and not death_animation_playing: 
 		dead = true
-		print("dead")
-		$AnimatedSprite2D.play("death")
-		death_animation_playing = true
-		await get_tree().create_timer(0.8).timeout
-		$AnimatedSprite2D.stop()
 		$CollisionShape2D.disabled = true
 		$Area2D/attract.disabled = true
 		$Area2D2/attack.disabled = true
-
+		print("dead")
+		$AnimatedSprite2D.play("death")
+		death_animation_playing = true
+		await get_tree().create_timer(2).timeout
+		get_tree().change_scene_to_file("res://scene/Game_Over.tscn")
 
 		
 	if Input.is_action_just_pressed("projectile"):

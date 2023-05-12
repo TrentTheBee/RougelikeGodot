@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://ccpl0ykjhrxw7"]
+[gd_scene load_steps=8 format=3 uid="uid://ccpl0ykjhrxw7"]
 
 [ext_resource type="Script" path="res://scene/main.gd" id="1_ob0q2"]
 [ext_resource type="PackedScene" uid="uid://bxqxwbcf2udxc" path="res://scene/player.tscn" id="2_qeys3"]
 [ext_resource type="PackedScene" uid="uid://bdiv4fyufws7x" path="res://scene/enemy.tscn" id="3_ji4c3"]
 [ext_resource type="AudioStream" uid="uid://c2ylotbr78plg" path="res://Assets/music/Blue Dungeon.mp3" id="4_c0iro"]
+[ext_resource type="PackedScene" uid="uid://cn44emt5evggq" path="res://scene/enemy_2.tscn" id="5_dc1ku"]
 [ext_resource type="PackedScene" uid="uid://3krybtecavk6" path="res://scene/Tilemap.tscn" id="5_pxvw3"]
 
 [sub_resource type="Curve2D" id="Curve2D_p4rju"]
@@ -54,5 +55,25 @@ position = Vector2(400, 276)
 
 [node name="EnemySpawnTimer" type="Timer" parent="."]
 autostart = true
+
+[node name="Enemy2" parent="." instance=ExtResource("5_dc1ku")]
+position = Vector2(-25, 452)
+
+[node name="Enemy3" parent="." instance=ExtResource("5_dc1ku")]
+position = Vector2(-189, 397)
+
+[node name="Enemy4" parent="." instance=ExtResource("5_dc1ku")]
+position = Vector2(-198, 595)
+
+[node name="Enemy5" parent="." instance=ExtResource("3_ji4c3")]
+position = Vector2(-45, 576)
+
+[node name="Enemy6" parent="." instance=ExtResource("3_ji4c3")]
+position = Vector2(56, 613)
+
+[node name="Enemy7" parent="." instance=ExtResource("3_ji4c3")]
+position = Vector2(-113, 505)
+
+[node name="Enemy2Spawner" type="Timer" parent="."]
 
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]

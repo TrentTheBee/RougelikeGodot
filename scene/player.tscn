@@ -219,8 +219,8 @@ radius = 33.0
 size = Vector2(22, 36)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kmhgq"]
-radius = 8.0
-height = 28.0
+radius = 9.0
+height = 32.0
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_1hmqy")
@@ -261,6 +261,20 @@ shape = SubResource("CapsuleShape2D_kmhgq")
 [node name="Node2D" type="Node2D" parent="."]
 
 [node name="Marker2D" type="Marker2D" parent="."]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+lifetime_randomness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 300.0
+scale_amount_min = 5.0
+scale_amount_max = 5.0
+color = Color(0, 0, 0, 1)
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

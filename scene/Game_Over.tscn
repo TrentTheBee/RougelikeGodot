@@ -1,0 +1,79 @@
+[gd_scene load_steps=5 format=3 uid="uid://bdmnokn8jbykc"]
+
+[ext_resource type="Script" path="res://scene/menu.gd" id="1_ykvx0"]
+[ext_resource type="Texture2D" uid="uid://c5cldiiw66cx1" path="res://Assets/Menu stuff/OIP.jpg" id="2_qgwrk"]
+[ext_resource type="FontFile" uid="uid://drj428iy330do" path="res://Assets/Menu stuff/Fonts/DragonHunter-9Ynxj.otf" id="3_70j4y"]
+[ext_resource type="AudioStream" uid="uid://cukrneuxfxeue" path="res://Assets/music/Taverns Music.mp3" id="4_prym2"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchor_top = 0.028
+anchor_right = 0.825
+anchor_bottom = 0.835
+offset_left = -1.0
+offset_top = -12.144
+offset_right = 27.6
+offset_bottom = 5.91998
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ykvx0")
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(579, 326.25)
+scale = Vector2(2.43671, 2.79114)
+stream = ExtResource("4_prym2")
+autoplay = true
+
+[node name="Oip" type="Sprite2D" parent="."]
+self_modulate = Color(1, 0.384314, 0.360784, 1)
+position = Vector2(579, 326.25)
+scale = Vector2(2.43671, 2.79114)
+texture = ExtResource("2_qgwrk")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = 204.0
+offset_top = 321.0
+offset_right = 960.0
+offset_bottom = 649.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Restart" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.498039, 0, 0.0784314, 1)
+theme_override_fonts/font = ExtResource("3_70j4y")
+theme_override_font_sizes/font_size = 126
+text = "Try Again?"
+
+[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.498039, 0, 0.0784314, 1)
+theme_override_fonts/font = ExtResource("3_70j4y")
+theme_override_font_sizes/font_size = 50
+text = "Quit"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(648, 356.5)
+scale = Vector2(2.6962, 2.28165)
+stream = ExtResource("4_prym2")
+autoplay = true
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 171.0
+offset_top = 63.0
+offset_right = 1049.0
+offset_bottom = 217.0
+theme_override_colors/font_color = Color(0.498039, 0, 0.0784314, 1)
+theme_override_fonts/font = ExtResource("3_70j4y")
+theme_override_font_sizes/font_size = 140
+text = "Game-Over"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(582.5, 335)
+scale = Vector2(1.08241, 1.12521)
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Restart" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

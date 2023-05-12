@@ -40,6 +40,8 @@ func _physics_process(delta):
 			move(player.global_position, delta)
 			$AnimatedSprite2D.play("run")
 			print("hit")
+			player.health -= 100
+			player.cpu_particles_2d.emitting = true
 	if velocity.x < 0:
 		$AnimatedSprite2D.flip_h = true
 	else:
