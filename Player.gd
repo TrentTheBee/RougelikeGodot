@@ -112,6 +112,7 @@ func _physics_process(delta):
 		$AnimatedSprite2D.play("death")
 		death_animation_playing = true
 		await get_tree().create_timer(2).timeout
+		$GameOverSound.play()
 		get_tree().change_scene_to_file("res://scene/Game_Over.tscn")
 
 		
@@ -122,3 +123,4 @@ func fire():
 	pass 
 
 
+var bullet_scene = preload("res://scene/bullet.tscn")

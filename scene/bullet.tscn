@@ -8,12 +8,11 @@
 radius = 30.4631
 
 [node name="bullet" type="Area2D"]
-visible = false
 script = ExtResource("1_fpadr")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(27, 17)
-scale = Vector2(5.38, 4.97)
+[node name="Pixilart-drawing" type="Sprite2D" parent="."]
+position = Vector2(24, 15)
+scale = Vector2(4.9375, 4.5075)
 texture = ExtResource("2_wuo1i")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -22,3 +21,6 @@ shape = SubResource("CircleShape2D_y1kwr")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 script = ExtResource("3_thy8u")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bxqxwbcf2udxc" path="res://scene/player.tscn" id="2_qeys3"]
 [ext_resource type="PackedScene" uid="uid://bdiv4fyufws7x" path="res://scene/enemy.tscn" id="3_ji4c3"]
 [ext_resource type="AudioStream" uid="uid://c2ylotbr78plg" path="res://Assets/music/Blue Dungeon.mp3" id="4_c0iro"]
-[ext_resource type="PackedScene" uid="uid://cn44emt5evggq" path="res://scene/enemy_2.tscn" id="5_dc1ku"]
+[ext_resource type="PackedScene" path="res://scene/enemy_2.tscn" id="5_dc1ku"]
 [ext_resource type="PackedScene" uid="uid://3krybtecavk6" path="res://scene/Tilemap.tscn" id="5_pxvw3"]
 
 [sub_resource type="Curve2D" id="Curve2D_p4rju"]
@@ -22,7 +22,7 @@ layer_0/tile_data = PackedInt32Array(-65537, 65536, 3, -1, 0, 1, 65535, 0, 2, 13
 layer_1/tile_data = PackedInt32Array(5, 262145, 12, 65541, 262145, 13, 327680, 196609, 4, 655378, 65537, 3, 655375, 131073, 1, 655374, 131073, 2, 655373, 131073, 2, 655372, 196609, 1, 655371, 131073, 2, 524300, 458753, 2, 589836, 458753, 3, 524301, 196609, 2, 589837, 524289, 3, 524302, 589825, 2, 589838, 589825, 3, 1048583, 1, 12, 1114119, 1, 13, 1048586, 1, 12, 1114122, 1, 13, 1, 1, 13, -65535, 1, 12, -65532, 1, 12, 4, 1, 13)
 
 [node name="Player" parent="." instance=ExtResource("2_qeys3")]
-position = Vector2(264, 382)
+position = Vector2(133, 189)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 position = Vector2(-40, 14)
@@ -38,7 +38,7 @@ rotation = -0.00216919
 [node name="Marker2D" type="Marker2D" parent="Player/Path2D/PathFollow2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(224, 396)
+position = Vector2(93, 203)
 zoom = Vector2(2.5, 2.5)
 position_smoothing_enabled = true
 rotation_smoothing_enabled = true
