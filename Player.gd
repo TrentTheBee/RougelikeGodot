@@ -119,8 +119,11 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("projectile"):
 		fire()
 
-func fire():
-	pass 
-
-
 var bullet_scene = preload("res://scene/bullet.tscn")
+
+func fire():
+	var bullet = bullet_scene.instantiate()
+	bullet.direction = $Marker2D.global_position - global_position
+	bullet.global_position = $Marker2D.global_position
+	get_tree().get_root().add_child(bullet)
+

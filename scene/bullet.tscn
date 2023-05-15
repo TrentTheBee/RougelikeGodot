@@ -1,26 +1,27 @@
-[gd_scene load_steps=5 format=3 uid="uid://b3avybbfqe48s"]
+[gd_scene load_steps=4 format=3 uid="uid://b3avybbfqe48s"]
 
 [ext_resource type="Script" path="res://scene/bullet.gd" id="1_fpadr"]
 [ext_resource type="Texture2D" uid="uid://cmqax1yadb4lx" path="res://Assets/projectile/pixilart-drawing.png" id="2_wuo1i"]
-[ext_resource type="Script" path="res://scene/VisibleOnScreenNotifier2D.gd" id="3_thy8u"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y1kwr"]
-radius = 30.4631
+radius = 6.0
 
 [node name="bullet" type="Area2D"]
+position = Vector2(2, 1)
 script = ExtResource("1_fpadr")
 
 [node name="Pixilart-drawing" type="Sprite2D" parent="."]
-position = Vector2(24, 15)
-scale = Vector2(4.9375, 4.5075)
+scale = Vector2(0.959375, 1.00687)
 texture = ExtResource("2_wuo1i")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -2)
+position = Vector2(-5, -4)
 shape = SubResource("CircleShape2D_y1kwr")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-script = ExtResource("3_thy8u")
+position = Vector2(-5, -4)
+scale = Vector2(0.25025, 0.25)
+rect = Rect2(-10.005, -10, 20, 20)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
