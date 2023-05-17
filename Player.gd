@@ -45,6 +45,7 @@ func _process(delta):
 		velocity.x -= 1
 		$AnimatedSprite2D.play("run")
 		$AnimatedSprite2D.flip_h = true
+		
 		$sword/CollisionShape2D.position.x = -abs($sword/CollisionShape2D.position.x)
 		
 	if Input.is_action_pressed("down") and isAttacking == false and dead == false: #move down and play run animation
@@ -116,14 +117,3 @@ func _physics_process(delta):
 		get_tree().change_scene_to_file("res://scene/Game_Over.tscn")
 
 		
-	if Input.is_action_just_pressed("projectile"):
-		fire()
-
-var bullet_scene = preload("res://scene/bullet.tscn")
-
-func fire():
-	var bullet = bullet_scene.instantiate()
-	bullet.direction = $Marker2D.global_position - global_position
-	bullet.global_position = $Marker2D.global_position
-	get_tree().get_root().add_child(bullet)
-

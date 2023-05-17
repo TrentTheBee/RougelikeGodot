@@ -1,27 +1,29 @@
 [gd_scene load_steps=4 format=3 uid="uid://b3avybbfqe48s"]
 
 [ext_resource type="Script" path="res://scene/bullet.gd" id="1_fpadr"]
-[ext_resource type="Texture2D" uid="uid://cmqax1yadb4lx" path="res://Assets/projectile/pixilart-drawing.png" id="2_wuo1i"]
+[ext_resource type="Texture2D" uid="uid://ep5vi8edawtd" path="res://pixil-frame-0.png" id="2_0x21d"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y1kwr"]
-radius = 6.0
+radius = 5.83095
 
 [node name="bullet" type="Area2D"]
-position = Vector2(2, 1)
+rotation = -0.1183
 script = ExtResource("1_fpadr")
 
 [node name="Pixilart-drawing" type="Sprite2D" parent="."]
-scale = Vector2(0.959375, 1.00687)
-texture = ExtResource("2_wuo1i")
+position = Vector2(0.00219158, 0.00128882)
+rotation = 1.02449
+scale = Vector2(1.095, 1)
+texture = ExtResource("2_0x21d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-5, -4)
+position = Vector2(9.53674e-07, -4.76837e-07)
+rotation = -0.616897
 shape = SubResource("CircleShape2D_y1kwr")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(-5, -4)
-scale = Vector2(0.25025, 0.25)
-rect = Rect2(-10.005, -10, 20, 20)
+position = Vector2(-0.0307102, 0.0789456)
+scale = Vector2(0.4, 0.45)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

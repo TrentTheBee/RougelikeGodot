@@ -102,10 +102,12 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k3b44"]
-radius = 9.0
-height = 32.0
+radius = 11.0
+height = 34.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1swb6"]
+radius = 12.0
+height = 34.0
 
 [node name="Enemy2" type="CharacterBody2D" groups=["Enemy"]]
 script = ExtResource("1_dptwk")

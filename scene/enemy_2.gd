@@ -3,8 +3,8 @@ extends CharacterBody2D
 @onready var cpu_particles_2d = $CPUParticles2D
 var dead = false
 @export var damage = 300 #the damage dealt by the enemy
-@export var health = 100 #the enemys health
-@export var speed = 150 #the enemys speed (note unlike player enemys stay at the same speed)
+@export var health = 50 #the enemys health
+@export var speed = 100 #the enemys speed (note unlike player enemys stay at the same speed)
 var randomNum #random number see below for random number genrator
 
 @onready var attack_timer = $AttackTimer #this is the attack timer node outside the script

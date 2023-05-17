@@ -4,12 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://byxx13wl67gfv" path="res://Assets/Pixel Crawler - FREE - 1.8/Pixel Crawler - FREE - 1.8/Enemy/Skeleton Crew/Skeleton - Base/Death/Death-Sheet.png" id="2_266hg"]
 [ext_resource type="Texture2D" uid="uid://hrtgp7yd8h4a" path="res://Assets/Pixel Crawler - FREE - 1.8/Pixel Crawler - FREE - 1.8/Enemy/Skeleton Crew/Skeleton - Base/Run/Run-Sheet.png" id="3_qs8c8"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rlig1"]
-size = Vector2(16, 30)
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_16pfd"]
-radius = 8.0
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_3umem"]
 atlas = ExtResource("2_266hg")
 region = Rect2(0, 0, 96, 64)
@@ -121,23 +115,19 @@ animations = [{
 "speed": 7.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rlig1"]
+size = Vector2(16, 30)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_16pfd"]
+height = 32.0
+
 [node name="Enemy" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_p1ec5")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 1)
-shape = SubResource("RectangleShape2D_rlig1")
-
 [node name="AttackTimer" type="Timer" parent="."]
 wait_time = 2.0
-
-[node name="Body" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
-position = Vector2(-1, 1)
-shape = SubResource("CapsuleShape2D_16pfd")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1, -16)
@@ -165,6 +155,16 @@ scale_amount_max = 5.0
 color = Color(0.92549, 0.796078, 0.67451, 1)
 anim_speed_max = 24.57
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_rlig1")
+
+[node name="Body" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
+position = Vector2(1, 1)
+shape = SubResource("CapsuleShape2D_16pfd")
+
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
-[connection signal="body_entered" from="Body" to="." method="_on_body_body_entered"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="Body" to="." method="_on_body_body_entered"]

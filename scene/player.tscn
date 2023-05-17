@@ -1,8 +1,10 @@
-[gd_scene load_steps=35 format=3 uid="uid://bxqxwbcf2udxc"]
+[gd_scene load_steps=37 format=3 uid="uid://bxqxwbcf2udxc"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_1hmqy"]
 [ext_resource type="Texture2D" uid="uid://dlmimk0l6n6qv" path="res://Assets/AnimationSheet_Character.png" id="2_21eca"]
 [ext_resource type="AudioStream" uid="uid://dglawccb4na2i" path="res://Assets/music/death.mp3" id="3_hq1bs"]
+[ext_resource type="Script" path="res://scene/Node2D.gd" id="3_ljidd"]
+[ext_resource type="Texture2D" uid="uid://cnv0vihuxw5ry" path="res://Assets/projectile/Pixel Wands Pack By Mikiz/Pixel Wands Pack By Mikiz/Version 1/wood fire wand.png" id="4_g5v1x"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aitrk"]
 radius = 7.5
@@ -225,6 +227,7 @@ height = 32.0
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_1hmqy")
+metadata/_edit_horizontal_guides_ = [-30.0]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 2)
@@ -232,9 +235,7 @@ shape = SubResource("CapsuleShape2D_aitrk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_gdct4")
-animation = &"death"
-frame = 7
-frame_progress = 1.0
+animation = &"idle"
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(0, 3)
@@ -242,7 +243,8 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="attract" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, -2)
+position = Vector2(-4.23516e-22, -2)
+scale = Vector2(1, 0.90566)
 shape = SubResource("CircleShape2D_7x7qw")
 
 [node name="sword" type="Area2D" parent="." groups=["Sword"]]
@@ -256,12 +258,19 @@ one_way_collision_margin = 0.0
 [node name="Area2D2" type="Area2D" parent="."]
 
 [node name="attack" type="CollisionShape2D" parent="Area2D2"]
-position = Vector2(-1, 2)
 shape = SubResource("CapsuleShape2D_kmhgq")
 
 [node name="Node2D" type="Node2D" parent="."]
+script = ExtResource("3_ljidd")
 
-[node name="Marker2D" type="Marker2D" parent="."]
+[node name="Pixilart-drawing(1)" type="Sprite2D" parent="Node2D"]
+position = Vector2(24.6685, 0.583993)
+rotation = 0.755545
+scale = Vector2(0.944336, 0.864183)
+texture = ExtResource("4_g5v1x")
+
+[node name="Marker2D" type="Marker2D" parent="Node2D/Pixilart-drawing(1)"]
+position = Vector2(5.90622, -5.19588)
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 emitting = false
