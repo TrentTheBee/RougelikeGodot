@@ -11,6 +11,7 @@ rotation = -0.1183
 script = ExtResource("1_fpadr")
 
 [node name="Pixilart-drawing" type="Sprite2D" parent="."]
+self_modulate = Color(0.807843, 0.0117647, 0, 1)
 position = Vector2(0.00219158, 0.00128882)
 rotation = 1.02449
 scale = Vector2(1.095, 1)
