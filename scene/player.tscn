@@ -266,22 +266,13 @@ shape = SubResource("CapsuleShape2D_kmhgq")
 script = ExtResource("3_ljidd")
 
 [node name="Pixilart-drawing(1)" type="Sprite2D" parent="Node2D"]
-position = Vector2(25.0101, 0.268656)
+position = Vector2(24.6685, 0.583993)
 rotation = 0.755545
-scale = Vector2(0.940281, 0.922155)
+scale = Vector2(0.944336, 0.864183)
 texture = ExtResource("4_g5v1x")
 
 [node name="Marker2D" type="Marker2D" parent="Node2D/Pixilart-drawing(1)"]
 position = Vector2(5.90622, -5.19588)
-
-[node name="Marker2D2" type="Marker2D" parent="Node2D/Pixilart-drawing(1)"]
-position = Vector2(9.59056, -0.673454)
-
-[node name="Marker2D3" type="Marker2D" parent="Node2D/Pixilart-drawing(1)"]
-position = Vector2(1.56898, -9.35624)
-
-[node name="scoreTimer" type="Timer" parent="Node2D"]
-autostart = true
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 emitting = false
@@ -306,4 +297,3 @@ stream = ExtResource("3_hq1bs")
 [connection signal="body_entered" from="sword" to="." method="_on_sword_body_entered"]
 [connection signal="body_entered" from="Area2D2" to="." method="_on_area_2d_2_body_entered"]
 [connection signal="body_exited" from="Area2D2" to="." method="_on_area_2d_2_body_exited"]
-[connection signal="timeout" from="Node2D/scoreTimer" to="Node2D" method="_on_score_timer_timeout"]
