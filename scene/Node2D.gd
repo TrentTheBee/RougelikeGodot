@@ -3,6 +3,7 @@ extends Node2D
 var score = 0
 
 @onready var marker_2d = $"Pixilart-drawing(1)/Marker2D"
+
 var fire_type = 1
 
 @onready var marker_2d_2 = $"Pixilart-drawing(1)/Marker2D2"
@@ -19,7 +20,7 @@ func _physics_process(delta):
 		fire()
 
 func _process(delta):
-	if score >= 100:
+	if score >= 30:
 		fire_type = 2
 
 func fire():
@@ -29,6 +30,7 @@ func fire():
 		bullet.direction = marker_2d.global_position - global_position
 		bullet.global_position = marker_2d.global_position 
 		get_tree().get_root().add_child(bullet)
+		
 	if fire_type == 2:
 		var bullet = bullet_scene.instantiate()
 		print(bullet.direction)

@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://ccpl0ykjhrxw7"]
 
 [ext_resource type="Script" path="res://scene/main.gd" id="1_ob0q2"]
-[ext_resource type="PackedScene" uid="uid://iyvyxvm6xtja" path="res://scene/test_level.tscn" id="2_groq6"]
+[ext_resource type="PackedScene" uid="uid://dntkebfan56ep" path="res://scene/test_level.tscn" id="2_groq6"]
 [ext_resource type="PackedScene" uid="uid://bxqxwbcf2udxc" path="res://scene/player.tscn" id="2_qeys3"]
 [ext_resource type="PackedScene" uid="uid://bdiv4fyufws7x" path="res://scene/enemy.tscn" id="3_ji4c3"]
-[ext_resource type="AudioStream" uid="uid://cavi0w8tdubn3" path="res://Assets/music/Red Dungeon.mp3" id="4_0mr6u"]
+[ext_resource type="AudioStream" uid="uid://c2ylotbr78plg" path="res://Assets/music/Blue Dungeon.mp3" id="4_us1hh"]
 [ext_resource type="PackedScene" uid="uid://cn44emt5evggq" path="res://scene/enemy_2.tscn" id="5_dc1ku"]
 
 [sub_resource type="Curve2D" id="Curve2D_p4rju"]
@@ -17,12 +17,13 @@ point_count = 6
 [node name="Main" type="Node2D"]
 scale = Vector2(1.00214, 0.965724)
 script = ExtResource("1_ob0q2")
-metadata/_edit_horizontal_guides_ = [147.0]
+metadata/_edit_horizontal_guides_ = [147.0, -328.0]
 
 [node name="Test Level" parent="." instance=ExtResource("2_groq6")]
+position = Vector2(-33.2051, -14.1226)
 
 [node name="Player" parent="." instance=ExtResource("2_qeys3")]
-position = Vector2(2302.07, 36.2422)
+position = Vector2(2305.07, 111.833)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 position = Vector2(-40, 14)
@@ -38,7 +39,7 @@ rotation = -0.00216919
 [node name="Marker2D" type="Marker2D" parent="Player/Path2D/PathFollow2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(2262.07, 50.2422)
+position = Vector2(2265.07, 125.833)
 zoom = Vector2(2.5, 2.5)
 position_smoothing_enabled = true
 rotation_smoothing_enabled = true
@@ -46,7 +47,7 @@ drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_0mr6u")
+stream = ExtResource("4_us1hh")
 volume_db = -6.0
 autoplay = true
 

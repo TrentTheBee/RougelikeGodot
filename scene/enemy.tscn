@@ -122,8 +122,6 @@ size = Vector2(16, 30)
 height = 32.0
 
 [node name="Enemy" type="CharacterBody2D" groups=["Enemy"]]
-collision_layer = 3
-collision_mask = 3
 script = ExtResource("1_p1ec5")
 
 [node name="AttackTimer" type="Timer" parent="."]
